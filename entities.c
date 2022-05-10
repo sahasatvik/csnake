@@ -55,10 +55,10 @@ int snake_collide(Snake *snake, int screen_width, int screen_height) {
 
 void snake_draw(Snake *snake, Screen *screen) {
         for (int i = snake->tail; i != snake->head; ) {
-                screen_set(screen, '*', snake->segments[i].x, snake->segments[i].y);
+                screen_set(screen, ' ', WHITE, GREEN, snake->segments[i].x, snake->segments[i].y);
                 i = (i + 1) % MAX_SNAKE_LENGTH;
         }
-        screen_set(screen, 'H', snake->segments[snake->head].x, snake->segments[snake->head].y);
+        screen_set(screen, ' ', WHITE, BLUE, snake->segments[snake->head].x, snake->segments[snake->head].y);
 }
 
 void fruit_randomize(Fruit *fruit, Snake *snake, int screen_width, int screen_height) {
@@ -84,5 +84,5 @@ void fruit_randomize(Fruit *fruit, Snake *snake, int screen_width, int screen_he
 }
 
 void fruit_draw(Fruit *fruit, Screen *screen) {
-        screen_set(screen, 'F', fruit->location.x, fruit->location.y);
+        screen_set(screen, ' ', WHITE, RED, fruit->location.x, fruit->location.y);
 }

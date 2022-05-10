@@ -27,18 +27,35 @@
 #define ANSI_BG_CYAN    "\033[46m"
 #define ANSI_BG_WHITE   "\033[47m"
 
+typedef enum {
+        BLACK = 0,
+        RED,
+        GREEN,
+        YELLOW,
+        BLUE,
+        MAGENTA,
+        CYAN,
+        WHITE,
+} Color;
+
+typedef struct {
+        char item;
+        Color fg;
+        Color bg;
+} Pixel;
+
 typedef struct {
         int width;
         int height;
-        char *pixels;
+        Pixel *pixels;
 } Screen;
 
 Screen *screen_init(int, int);
 void screen_free(Screen *);
 void screen_reset(Screen *);
 
-void screen_set(Screen *, char, int, int);
-char screen_get(Screen *, int, int);
+void screen_set(Screen *, char, Color, Color, int, int);
+Pixel screen_get(Screen *, int, int);
 
 void screen_display(Screen *, Screen *);
 

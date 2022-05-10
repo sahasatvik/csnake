@@ -17,12 +17,14 @@ int main(int argc, const char *argv[]) {
 
         Screen *screen = screen_init(width, height);
         Screen *screen_b = screen_init(width, height);
-        Snake *snake = snake_init((Point) {width / 2, height / 2}, RIGHT, 10);
         
+        Snake snake;
         Fruit fruit;
-        fruit_randomize(&fruit, snake, width, height);
 
-        KeyhandlerData kd = { .direction = &(snake->direction), .running = 1 };
+        snake_build(&snake, width / 2, height / 2, RIGHT, 10);
+        fruit_randomize(&fruit, &snake, width, height);
+
+        KeyhandlerData kd = { .direction = &(snake.direction), .running = 1 };
         keys_setup();
 
         pthread_t keys_id;
@@ -35,12 +37,12 @@ int main(int argc, const char *argv[]) {
 
         while (kd.running) {
                 screen_reset(screen);
-                int eaten = snake_tick(snake, &fruit);
+                int eaten = snake_tick(&snake, &fruit);
                 if (eaten)
-                        fruit_randomize(&fruit, snake, width, height);
-                snake_draw(snake, screen);
+                        fruit_randomize(&fruit, &snake, width, height);
+                snake_draw(&snake, screen);
                 fruit_draw(&fruit, screen);
-                if (snake_collide(snake, width, height)) {
+                if (snake_collide(&snake, width, height)) {
                         sleep(1);
                         kd.running = 0;
                         pthread_cancel(keys_id);
@@ -58,15 +60,13 @@ int main(int argc, const char *argv[]) {
         }
         
         keys_cleanup();
+        screen_free(screen);
 
         printf(ANSI_GOTO, 0, 0);
         printf(ANSI_CLEAR);
         printf(ANSI_SHOW_CUR);
 
         pthread_join(keys_id, NULL);
-
-        snake_free(snake);
-        screen_free(screen);
 
         return 0;
 }

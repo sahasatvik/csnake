@@ -31,7 +31,6 @@ typedef struct {
         int width;
         int height;
         char *pixels;
-        char *colors;
 } Screen;
 
 Screen *screen_init(int, int);

@@ -11,24 +11,17 @@ Point direction_delta[] = {
         { .x =  1, .y =  0 },
 };
 
-Snake *snake_init(Point head, Direction direction, int length) {
-        Snake *snake = malloc(sizeof(Snake));
+void snake_build(Snake *snake, int headx, int heady, Direction direction, int length) {
         for (int i = length - 1; i >= 0; i--) {
-                snake->segments[i].x = head.x;
-                snake->segments[i].y = head.y;
-                head.x -= direction_delta[direction].x;
-                head.y -= direction_delta[direction].y;
+                snake->segments[i].x = headx;
+                snake->segments[i].y = heady;
+                headx -= direction_delta[direction].x;
+                heady -= direction_delta[direction].y;
         }
         snake->head = length - 1;
         snake->tail = 0;
         snake->direction = direction;
         snake->lastdirection = direction;
-
-        return snake;
-}
-
-void snake_free(Snake *snake) {
-        free(snake);
 }
 
 int snake_tick(Snake *snake, Fruit *fruit) {

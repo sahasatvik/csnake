@@ -29,8 +29,7 @@ typedef struct {
         Point location;
 } Fruit;
 
-Snake *snake_init(Point, Direction, int);
-void snake_free(Snake *);
+void snake_build(Snake *, int, int, Direction, int);
 int snake_tick(Snake *, Fruit *);
 int snake_collide(Snake *, int, int);
 void snake_draw(Snake *, Screen *);

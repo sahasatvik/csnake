@@ -55,7 +55,7 @@ void screen_free(Screen *);
 void screen_reset(Screen *);
 
 void screen_set(Screen *, char, Color, Color, int, int);
-Pixel screen_get(Screen *, int, int);
+Pixel *screen_get(Screen *, int, int);
 
 void screen_display(Screen *, Screen *);
 

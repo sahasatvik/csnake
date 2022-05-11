@@ -50,4 +50,6 @@ void *keys_handle(void *args) {
                 clearerr(stdin);
 
         kd->running = 0;
+
+        return NULL;
 }

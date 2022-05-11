@@ -7,4 +7,7 @@ gcc -o csnake csnake.c keys.c screen.c entities.c
 ./csnake
 ```
 
+Use `hjkl` to control the snake, `q` to exit.
+
+
 ![snake_game](./game.png)

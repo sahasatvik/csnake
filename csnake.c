@@ -33,13 +33,18 @@ int main(int argc, const char *argv[]) {
         printf(ANSI_CLEAR);
         printf(ANSI_HIDE_CUR);
 
+        int fruiteaten = 0;
         long sleep_time = 200000;
 
         while (kd.running) {
                 screen_reset(screen);
                 int eaten = snake_tick(&snake, &fruit);
-                if (eaten)
+                if (eaten) {
+                        fruiteaten++;
+                        if (sleep_time > 10000)
+                                sleep_time = (long) (sleep_time * 0.98);
                         fruit_randomize(&fruit, &snake, width, height);
+                }
                 snake_draw(&snake, screen);
                 fruit_draw(&fruit, screen);
                 if (snake_collide(&snake, width, height)) {
@@ -55,8 +60,6 @@ int main(int argc, const char *argv[]) {
                 screen_b = temp;
 
                 usleep(sleep_time);
-                if (sleep_time > 10000)
-                        sleep_time -= 100;
         }
         
         keys_cleanup();
@@ -67,6 +70,8 @@ int main(int argc, const char *argv[]) {
         printf(ANSI_SHOW_CUR);
 
         pthread_join(keys_id, NULL);
+
+        printf("Fruit eaten: %d\n", fruiteaten);
 
         return 0;
 }

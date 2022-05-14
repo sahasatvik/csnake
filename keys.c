@@ -1,11 +1,9 @@
 #include <stdio.h>
 #include <string.h>
 #include <termios.h>
-#include <pthread.h>
 
 #include "entities.h"
 #include "keys.h"
-
 
 struct termios term_orig_attr, term_new_attr;
 
@@ -21,7 +19,6 @@ void keys_setup() {
 void keys_cleanup() {
         tcsetattr(fileno(stdin), TCSANOW, &term_orig_attr);
 }
-
 
 void *keys_handle(void *args) {
         KeyhandlerData *kd = (KeyhandlerData *) args;

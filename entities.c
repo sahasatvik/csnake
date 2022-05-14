@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "screen.h"
 #include "entities.h"
+#include "screen.h"
 
 Point direction_delta[] = {
         { .x =  0, .y =  1 },

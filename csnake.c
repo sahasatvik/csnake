@@ -6,6 +6,7 @@
 
 #include "entities.h"
 #include "keys.h"
+#include "screen.h"
 
 int main(int argc, const char *argv[]) {
         

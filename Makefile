@@ -14,9 +14,9 @@ $(TARGET) : $(MAIN) $(OBJS)
 %.o : %.c %.h
 	$(CC) $(CFLAGS) -c $<
 
-keys.o: entities.o screen.o
+keys.o : entities.o screen.o
 
-entities.o: screen.o
+entities.o : screen.o
 
 clean :
 	rm $(TARGET) $(OBJS)

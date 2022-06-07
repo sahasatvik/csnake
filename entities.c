@@ -4,7 +4,7 @@
 #include "entities.h"
 #include "screen.h"
 
-Point direction_delta[] = {
+static Point direction_delta[] = {
         { .x =  0, .y =  1 },
         { .x =  0, .y = -1 },
         { .x = -1, .y =  0 },

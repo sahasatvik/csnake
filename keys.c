@@ -5,7 +5,7 @@
 #include "entities.h"
 #include "keys.h"
 
-struct termios term_orig_attr, term_new_attr;
+static struct termios term_orig_attr, term_new_attr;
 
 void keys_setup() {
         tcgetattr(fileno(stdin), &term_orig_attr);

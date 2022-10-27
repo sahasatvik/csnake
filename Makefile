@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-Wall
+CFLAGS=-Wall -pthread
 MAIN=csnake.c
 TARGET=csnake
 OBJS=keys.o \
